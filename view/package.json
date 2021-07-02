@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "server": "json-server --watch db.json",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
@@ -15,7 +16,9 @@
   },
   "main": "background.js",
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "json-server": "^0.16.3",
     "vue": "3.1.1"
   },
   "devDependencies": {
