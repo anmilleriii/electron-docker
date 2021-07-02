@@ -1,14 +1,29 @@
 module.exports = {
   root: true,
   env: {
-    node: true,
+    node: true
   },
-  extends: ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/prettier"],
+  extends: ["plugin:vue/essential", "eslint:recommended"],
   parserOptions: {
-    parser: "babel-eslint",
+    parser: "babel-eslint"
   },
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    // Ignoring for <script setup> syntax
+    "no-unused-vars": 0,
+    // Mistakenly flags `const variableName = ref(null)` then `variableName.value = ...`
+    "no-const-assign": 0,
   },
+  overrides: [
+    {
+      files: [
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)"
+      ],
+      env: {
+        jest: true
+      }
+    }
+  ]
 };
