@@ -1,10 +1,10 @@
-const { ipcRenderer } = require('electron')
+// const { ipcRenderer } = require('electron')
 
 export default function send(message) {
     return new Promise((resolve) => {
-        ipcRenderer.once('asynchronous-reply', (_, arg) => {
+        window.ipcRenderer.once('asynchronous-reply', (_, arg) => {
             resolve(arg);
         });
-        ipcRenderer.send('asynchronous-message', message);
+        window.ipcRenderer.send('asynchronous-message', message);
     });
 }

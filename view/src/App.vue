@@ -1,24 +1,31 @@
 <template>
-<div>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <button @click="send('hey')">Send message</button>
-  <HelloWorld msg="Welcome to Your Vue.js App" />
-</div>
+  <div>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <button @click="send('hey')">Send message</button>
+    <HelloWorld msg="Welcome to Your Vue.js App" />
+  </div>
 </template>
 
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
+
+console.log(window.ipcRenderer)
 import sendAsync from "./message-control/renderer";
 
-console.log(sendAsync);
+// console.log(sendAsync);
 
 function send(data) {
   sendAsync(data).then((result) => {
-    console.log(result)
+    console.log(result);
   });
 }
 </script>
 
+// <script>
+// export default {
+//   setup() {},
+// };
+// </script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
