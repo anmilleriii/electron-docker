@@ -8,41 +8,39 @@
         width: 500px;
         height: 500px;
       "
-      @click="send('hey')"
+      @click="send('d')"
     >
       Send message
     </button>
+    <!-- @click="send('hey')" -->
     <!-- <HelloWorld /> -->
   </div>
 </template>
 
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
+import axios from "axios";
 
 // console.log(window.ipcRenderer)
 import sendAsync from "./message-control/renderer";
 
-console.log(sendAsync);
+// console.log(sendAsync);
 
 function send(data) {
   sendAsync(data).then((result) => {
     console.log(result);
   });
 }
-async function addFarm({ commit }, farm) {
-  // Check db.json
-  // Add keys to farm (more convienent than? remove?)
-  const augmentedFarm = Object.assign(farm, {
-    id: uuid(),
-  });
-  const response = await axios
-    .post(`/api/farms`, augmentedFarm)
-    .catch((error) => console.log);
-  // TODO: Also accept 201?
-  if (response.status === 200) {
-    commit("ADD_FARM", augmentedFarm);
-  }
-}
+
+// async function addPost() {
+//   const response = await axios
+//     .post("/api/posts", "hey")
+//     .catch((error) => console.log);
+
+//   console.log(response);
+// }
+
+
 </script>
 
 <style>
