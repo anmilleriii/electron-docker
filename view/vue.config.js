@@ -3,7 +3,9 @@ module.exports = {
     pluginOptions: {
         electronBuilder: {
             preload: 'src/preload.js',
-            nodeIntegration: true
+            nodeIntegration: true,
+            // asdf
+            extraResources: ['src/db.json']
         }
 
     },

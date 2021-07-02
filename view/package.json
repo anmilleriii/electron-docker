@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "server": "json-server --watch db.json",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
@@ -20,7 +19,6 @@
     "core-js": "^3.6.5",
     "http": "*",
     "json-server": "^0.16.3",
-    "sqlite3": "^5.0.2",
     "vue": "3.1.1"
   },
   "devDependencies": {

@@ -5,6 +5,12 @@ export default function send(message) {
         window.ipcRenderer.once('asynchronous-reply', (_, arg) => {
             resolve(arg);
         });
+
+
+
+
+
+
         window.ipcRenderer.send('asynchronous-message', message);
     });
 }

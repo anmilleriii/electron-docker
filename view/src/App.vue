@@ -8,7 +8,7 @@
         width: 500px;
         height: 500px;
       "
-      @click="send('d')"
+      @click="addPost('ping')"
     >
       Send message
     </button>
@@ -31,14 +31,16 @@ function send(data) {
     console.log(result);
   });
 }
+// Send GET request to http server on localhost:3000
+async function addPost(data) {
+    const response = await axios
+      .post("/api/posts", data)
+      .catch((error) => console.log);
+  
+    console.log(response);
+  }
 
-// async function addPost() {
-//   const response = await axios
-//     .post("/api/posts", "hey")
-//     .catch((error) => console.log);
 
-//   console.log(response);
-// }
 
 
 </script>
