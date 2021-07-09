@@ -1,0 +1,60 @@
+# FROM node:14
+
+# WORKDIR /view
+
+# # stuff needed to get Electron to run
+# RUN apt-get update && apt-get install \
+#     git libx11-xcb1 libxcb-dri3-0 libxtst6 libnss3 libatk-bridge2.0-0 libgtk-3-0 libxss1 libasound2 \
+#     -yq --no-install-suggests --no-install-recommends \
+#     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# COPY . ./
+
+# RUN useradd -d /am am
+# USER am
+# CMD npm run electron:serve
+
+
+
+
+
+
+
+
+# https://jaked.org/blog/2021-02-18-How-to-run-Electron-on-Linux-on-Docker-on-Mac
+FROM node:14
+
+# stuff needed to get Electron to run
+RUN apt-get update && apt-get install \
+    git libx11-xcb1 libxcb-dri3-0 libxtst6 libnss3 libatk-bridge2.0-0 libgtk-3-0 libxss1 libasound2 \
+    -yq --no-install-suggests --no-install-recommends \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Electron doesn't like to run as root
+WORKDIR /app
+COPY . ./
+RUN npm install
+# RUN npx electron-rebuild
+
+# Electron needs root for sandboxing
+# see https://github.com/electron/electron/issues/17972
+USER root
+# RUN sysctl -w kernel.unprivileged_userns_clone=1
+RUN chown root /app/node_modules/electron/dist/chrome-sandbox
+RUN chmod 4755 /app/node_modules/electron/dist/chrome-sandbox
+# sudo sysctl -w kernel.unprivileged_userns_clone=1
+
+# RUN useradd -d /am am
+# USER am
+# USER am
+# CMD npm run electron:serve
+RUN useradd -d /am am
+USER am
+CMD npm run electron:serve
+# build gives snapcraft error
+# RUN npm run electron:serve
+
+
+# RUN chown root node_modules/electron/dist/chrome-sandbox && chmod 4755 node_modules/electron/dist/chrome-sandbox
+# CMD npm run electron:serve && npm run serve
+# CMD node
