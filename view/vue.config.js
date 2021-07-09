@@ -2,23 +2,89 @@ module.exports = {
     parallel: false,
     pluginOptions: {
         electronBuilder: {
-            preload: 'src/preload.js',
             nodeIntegration: true,
-            // asdf
-            extraResources: ['src/db.json'],
+            externals: ['json-server'],
+            builderOptions: {
+                "appId": "remi.ffly",
+                "productName": "REMI",
+                files: [
+                    "**/*"
+                ],
+                extraResources: [
+                    "src/db.json",
+                    // {
+                    //   "from": "eepromStaging",
+                    //   "to": "eepromStaging",
+                    //   "filter": ["**/*"]
+                    // },
+                    // {
+                    //     from: 'node_modules/json-server/public',
+                    //     to: './Resources/public',
+                    //     "filter": ["**/*"]
+                    // }
+                ],
+                // preload: 'src/preload.js',
+                // externals: ['adm-zip'],
+                // asdf
+                // extraFiles: ['public/db.json'],
+                // extraFiles: ['db.json'],
 
+                // Must copy public directory to /Resources/public since that is where json-server looks for it
+                // extraFiles: [
+                //     "db.json",
+                //     {
+                //         "from": "public/",
+                //         "to": "public/",
+                //         "filter": [
+                //             "**/*"
+                //         ]
+                //     },
+                // ],
+                // files: [
+                //     "**/*"
+                //   ],
+                //   extraFiles: [
+                //     "db.json",
+                //   ],
 
-            
-            "appId": "remi.ffly",
-            "productName": "REMI",
-            "author": "Al Miller <albert.miller@fireflyautomatix.com & Ryan Aposhian <ryan.aposhian@fireflyautomatix.com>",
-            "license": "_",
-            "copyright": "FireFly Automatix, Inc.",
-            "linux": {
-              "target": "AppImage",
-              "category": "Utility"
+                // "extraFiles": ["db.json", "**/public/**/*"],
+                // {from: '../app/', to: '.'}
+                // "extraResources": ["/public/**/*"],
+
+                // extraResources: [
+                //     {
+                //         "from": "public/",
+                //         "to": "public/",
+                //         "filter": [
+                //             "**/*"
+                //         ]
+                //     },
+                // {
+                //   "from": "assets/",
+                //   "to": "assets/",
+                //   "filter": [
+                //     "**/*"
+                //   ]
+                // },
+                // {
+                //   "from": "accounts/",
+                //   "to": "accounts/",
+                //   "filter": [
+                //     "**/*"
+                //   ]
+                // }
+                // ],
+                // extraFiles: {
+                //     from: 'public/',
+                //     to: 'public/'
+                // },
+                // "linux": {
+                //     "target": "AppImage",
+                //     "category": "Utility"
+                // }
             }
         }
+
 
     },
     devServer: {

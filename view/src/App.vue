@@ -33,16 +33,19 @@ function send(data) {
 }
 // Send GET request to http server on localhost:3000
 async function addPost(data) {
-    const response = await axios
-      .post("/api/posts", data)
-      .catch((error) => console.log);
-  
-    console.log(response);
-  }
+  const response = await axios
+    .get(`${"http://localhost:3000"}/posts`)
+    .catch((error) => console.log);
 
+  console.log(response);
+}
+// async function addPost(data) {
+//     const response = await axios
+//       .post(`${'http://localhost:3000'}/posts`, data)
+//       .catch((error) => console.log);
 
-
-
+//     console.log(response);
+//   }
 </script>
 
 <style>

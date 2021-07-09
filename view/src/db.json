@@ -1,24 +1,9 @@
 {
   "posts": [
     {
-      "ping": "",
-      "createdAt": 1625250497310,
-      "id": 1
-    },
-    {
-      "ping": "",
-      "createdAt": 1625250498383,
-      "id": 2
-    },
-    {
-      "ping": "",
-      "createdAt": 1625250499564,
-      "id": 3
-    },
-    {
-      "ping": "",
-      "createdAt": 1625255203358,
-      "id": 4
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
     }
   ],
   "comments": [

@@ -21,21 +21,35 @@ const path = require('path')
 
 
 const isBuild = process.env.NODE_ENV === 'production'
-const pathToDbFile = path.join(
-  isBuild ? __dirname : __static,
-  '../src/db.json',
-);
+// const pathToDbFile = path.join(
+//   isBuild ? __dirname : __static,
+//   '../src/db.json',
+// );
 
+// build: /Users/view.app/Contents/Resources/db.json
+// serve: /src/db.json
 
+// const pathToDbFile = path.join(
+//   isBuild ? process.resourcesPath : __static, '../src/db.json'
+// );
+
+// const pathToDbFile = path.join(__dirname, 'db.json')
+// const pathToDbFile = path.join(process.resourcesPath, 'db.json')
+// const pathToDbFile = path.join(__static, '../db.json') // DEV
+// const pathToDbFile = path.join(__static, 'db.json') // DEV
+const pathToDbFile = path.join(__dirname, '../src/db.json') // PROD
 
 const router = jsonServer.router(pathToDbFile)
 
 // console.log(__static)
-console.log(pathToDbFile)
+// console.log(process.resourceUsage())
 // console.clear()
 // console.log(router)
 // const router = jsonServer.router('../../db.json')
 const middlewares = jsonServer.defaults()
+// const middlewares = jsonServer.defaults({
+//   static: path.join(__dirname, '../node_modules/json-server/public')
+// })
 
 
 // To handle POST, PUT and PATCH you need to use a body-parser
@@ -54,8 +68,16 @@ server.use(router)
 
 // console.log(router)
 server.listen(3000, () => {
-  console.log('JSON Server is running')
+  console.log('JSON Server is running ')
 })
+
+
+// console.log(pathToDbFile)
+// console.log(`__dirname: ${__dirname}`)
+// console.log(`__static: ${__static}`)
+// console.log(`pathToDbFile: ${pathToDbFile}`)
+// console.log(`process.resourcesPath: ${process.resourcesPath}`)
+// console.log(`Middlewares: ${middlewares}`)
 
 // server.post(
 
@@ -63,15 +85,15 @@ server.listen(3000, () => {
 ipcMain.on('asynchronous-message', (event, arg) => {
 
 
-// Send GET request to http server on localhost:3000
-// async function addPost(data) {
-//     const response = await axios
-//       .post("/api/posts", data)
-//       .catch((error) => console.log);
-  
-//     console.log(response);
-//   }
-    // console.log(server.all)
+  // Send GET request to http server on localhost:3000
+  // async function addPost(data) {
+  //     const response = await axios
+  //       .post("/api/posts", data)
+  //       .catch((error) => console.log);
+
+  //     console.log(response);
+  //   }
+  // console.log(server.all)
 
 
 
@@ -80,9 +102,9 @@ ipcMain.on('asynchronous-message', (event, arg) => {
 
 
 
-    console.log(arg); // prints "ping"
-    if (arg === 'ping') event.reply('asynchronous-reply', 'pong!');
-    else event.reply('asynchronous-reply', 'please, send me ping.');
+  console.log(arg); // prints "ping"
+  if (arg === 'ping') event.reply('asynchronous-reply', 'pong!');
+  else event.reply('asynchronous-reply', 'please, send me ping.');
 });
 
 // const database = new sqlite3.Database('./public/db.db', (err) => {
