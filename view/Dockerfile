@@ -1,14 +1,3 @@
-# Electron:build base image
-# What CLI arg to use for --linux?
-# CI process for electron-builder
-# Ubuntu
-# Ignore arch warning
-
-# lsb_release -a out:
-# Distributor ID: Ubuntu
-# Description:    Ubuntu 20.04.2 LTS
-# Release:        20.04
-# Codename:       focal
 
 FROM electronuserland/builder:base
 
@@ -26,10 +15,12 @@ RUN curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm
 RUN apt update && apt install -y libnss3-dev libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libasound2
 WORKDIR /view
 COPY . ./
-RUN npm install
+# have to rebuild electron
+RUN npm install && npm install electron
 # error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory
 # CMD npm run serve
-CMD node
+# CMD node
+
 # CMD npm run electron:build
 
 # TODO: add
@@ -39,7 +30,10 @@ CMD node
 # apt-get install libasound2:i386
 # --platform linux/amd64
 
-ENTRYPOINT npm run electron:serve
+ENTRYPOINT node
+
+
+# ENTRYPOINT npm run electron:serve 
 
 
 # docker cp peaceful_raman:/view/dist_electron ~/
@@ -47,3 +41,14 @@ ENTRYPOINT npm run electron:serve
 
 # docker run -it -d --platform linux/amd64
 # apt update && apt install -y libnss3-dev libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libasound2
+# Electron:build base image
+# What CLI arg to use for --linux?
+# CI process for electron-builder
+# Ubuntu
+# Ignore arch warning
+
+# lsb_release -a out:
+# Distributor ID: Ubuntu
+# Description:    Ubuntu 20.04.2 LTS
+# Release:        20.04
+# Codename:       focal
