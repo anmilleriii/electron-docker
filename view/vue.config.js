@@ -5,8 +5,8 @@ module.exports = {
             nodeIntegration: true,
             externals: ['json-server'],
             builderOptions: {
-                "appId": "remi.ffly",
-                "productName": "REMI",
+                "appId": "view",
+                "productName": "view",
                 files: [
                     "**/*"
                 ],
