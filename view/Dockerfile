@@ -23,6 +23,7 @@ RUN curl -L https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64
   npm config set unsafe-perm true
 RUN curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm
 
+RUN apt update && apt install -y libnss3-dev libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libasound2
 WORKDIR /view
 COPY . ./
 RUN npm install
