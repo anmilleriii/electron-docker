@@ -39,7 +39,7 @@ CMD node
 # apt-get install libasound2:i386
 # --platform linux/amd64
 
-
+ENTRYPOINT npm run electron:serve
 
 
 # docker cp peaceful_raman:/view/dist_electron ~/
