@@ -1,3 +1,14 @@
+# Electron:build base image
+# What CLI arg to use for --linux?
+# CI process for electron-builder
+# Ubuntu
+# Ignore arch warning
+
+# lsb_release -a out:
+# Distributor ID: Ubuntu
+# Description:    Ubuntu 20.04.2 LTS
+# Release:        20.04
+# Codename:       focal
 
 FROM electronuserland/builder:base
 
@@ -11,19 +22,16 @@ RUN curl -L https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64
   # https://github.com/npm/npm/issues/4531
   npm config set unsafe-perm true
 RUN curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm
-# order matters
-# RUN apt update && apt install -y libnss3-dev libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libasound2
+
+RUN apt update && apt install -y libnss3-dev libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libasound2
 WORKDIR /view
 COPY . ./
-# have to rebuild electron
-RUN npm install && npm install electron
+RUN npm install
 # error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory
 # CMD npm run serve
-# CMD node
-# https://medium.com/nttlabs/buildx-multiarch-2c6c2df00ca2
+CMD node
 # CMD npm run electron:build
-# docker buildx  build -t ranjithkumarmv/node-12.13.0-awscli . --platform linux/amd64
-
+# rm 
 # TODO: add
 # sudo apt install libnss3-dev libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0
 # apt-get install -y lsb-release
@@ -31,14 +39,9 @@ RUN npm install && npm install electron
 # apt-get install libasound2:i386
 # --platform linux/amd64
 
-ENTRYPOINT node
+# 
 
 
-# docker buildx build \
-#   --push -t example.com/hello:latest \
-#   --platform=linux/amd64,linux/arm64 .
-
-# ENTRYPOINT npm run electron:serve 
 
 
 # docker cp peaceful_raman:/view/dist_electron ~/
@@ -46,14 +49,7 @@ ENTRYPOINT node
 
 # docker run -it -d --platform linux/amd64
 # apt update && apt install -y libnss3-dev libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libasound2
-# Electron:build base image
-# What CLI arg to use for --linux?
-# CI process for electron-builder
-# Ubuntu
-# Ignore arch warning
 
-# lsb_release -a out:
-# Distributor ID: Ubuntu
-# Description:    Ubuntu 20.04.2 LTS
-# Release:        20.04
-# Codename:       focal
+# Me to Everyone (12:48 PM)
+# https://github.com/nklayman/vue-cli-plugin-electron-builder/issues/24
+# https://jaked.org/blog/2021-02-18-How-to-run-Electron-on-Linux-on-Docker-on-Mac
