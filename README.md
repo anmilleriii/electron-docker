@@ -6,6 +6,8 @@ This provides examples for how to run **Electron** in **Docker** (via **electron
 
 Included are example scripts for building/running containers for Linux (tested Ubuntu) (`linux/amd64`) and Intel Macs, as well as the Mac M1 (Apple Silicon, `linux/amd64`).
 
+This is really just a jumping off point to get an idea of how some of the Electron-Docker idiosyncrasies (X11-forwarding, not-straightforward Electron dependencies, etc.).
+
 ## Included Platforms
 
 | Target OS     | Architecture  | Run Flag      |
