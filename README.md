@@ -14,7 +14,7 @@ Included are example scripts for building/running containers for Linux (tested U
 | macOS (M1)    | `linux/arm64` | `--macos-arm` |
 | macOS (Intel) | `linux/amd64` | `--macos-amd` |
 
-## Build
+## Build & Run
 
 To build container images, run the following with the appropriate command based on the above table.
 
