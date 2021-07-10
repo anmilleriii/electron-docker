@@ -12,19 +12,13 @@
     >
       Send message
     </button>
-    <!-- @click="send('hey')" -->
-    <!-- <HelloWorld /> -->
   </div>
 </template>
 
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
 import axios from "axios";
-
-// console.log(window.ipcRenderer)
 import sendAsync from "./message-control/renderer";
-
-// console.log(sendAsync);
 
 function send(data) {
   sendAsync(data).then((result) => {
@@ -36,16 +30,8 @@ async function addPost(data) {
   const response = await axios
     .get(`${"http://localhost:3000"}/posts`)
     .catch((error) => console.log);
-
   console.log(response);
 }
-// async function addPost(data) {
-//     const response = await axios
-//       .post(`${'http://localhost:3000'}/posts`, data)
-//       .catch((error) => console.log);
-
-//     console.log(response);
-//   }
 </script>
 
 <style>
