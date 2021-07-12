@@ -17,9 +17,17 @@
     "server": "json-server --watch db.json --port 5002 "
   },
   "main": "background.js",
+  "updater": {
+    "url": "https://raw.githubusercontent.com/megahertz/electron-simple-updater/master/example/updates.json",
+    "autoDownload": "true",
+    "checkUpdateOnStart": "true",
+    "disabled": "false",
+    "logger": "console"
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "electron-simple-updater": "^2.0.10",
     "http": "*",
     "json-server": "^0.16.3",
     "vue": "3.1.1"

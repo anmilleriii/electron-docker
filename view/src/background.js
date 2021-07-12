@@ -6,6 +6,12 @@ import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 
 require('@/message-control/main');
 
+// electron-auto-updater
+// Entrypoint for Electron App
+const updater = require('../src/main');
+// updater options are set in package.json
+updater.init();
+
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 // Scheme must be registered before the app is ready
