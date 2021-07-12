@@ -8,8 +8,8 @@ require('@/message-control/main');
 
 // electron-auto-updater
 // Entrypoint for Electron App
-const updater = require('../src/main');
-// updater options are set in package.json
+const updater = require('electron-simple-updater');
+// // updater options are set in package.json
 updater.init();
 
 const isDevelopment = process.env.NODE_ENV !== "production";
