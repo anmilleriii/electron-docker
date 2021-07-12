@@ -18,7 +18,7 @@
   },
   "main": "background.js",
   "updater": {
-    "url": "https://raw.githubusercontent.com/megahertz/electron-simple-updater/master/example/updates.json",
+    "url": "https://github.com/anmilleriii/electron-docker-starter/tree/feature/add-auto-updates/updates.json",
     "autoDownload": "true",
     "checkUpdateOnStart": "true",
     "disabled": "false",
