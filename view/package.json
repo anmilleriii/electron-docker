@@ -14,7 +14,10 @@
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
     "serve:production": "vue-cli-service serve --mode production",
-    "server": "json-server --watch db.json --port 5002 "
+    "server": "json-server --watch db.json --port 5002 ",
+    "publish": "npm run publish ",
+    "dist": "npm run electron:build",
+    "release": "npm run dist && npm run publish"
   },
   "main": "background.js",
   "updater": {

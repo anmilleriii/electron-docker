@@ -11,6 +11,7 @@ require('@/message-control/main');
 const updater = require('electron-simple-updater');
 // // updater options are set in package.json
 updater.init();
+// npm install --save electron-simple-updater
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
