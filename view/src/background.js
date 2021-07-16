@@ -1,19 +1,43 @@
 "use strict";
 
+import { app, protocol, BrowserWindow, dialog } from "electron";
 import { autoUpdater } from "electron-updater"
-import { app, protocol, BrowserWindow } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
+
+const log = require('electron-log');
+// import { log } from 'electron-log'
+// import doesn't work but require does?
+
+// log.transports.file.level ='info'
+// log.info('asdfasdfasdf')
+// const { dialog } = require('electron')
+
+
+
+// const remote = require('electron').remote
+// const log = remote.require("electron-log");
+
+// import 'electron-is-dev'
+
+// configure logging
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = 'info';
+log.info('App starting...');
+// https://github.com/megahertz/electron-log/issues/48
+// const { ipcRenderer, remote } = window.require("electron");
 
 require('@/message-control/main');
 
 // electron-auto-updater
 // Entrypoint for Electron App
-const updater = require('electron-simple-updater');
+// const updater = require('electron-simple-updater');
 // // updater options are set in package.json
-updater.init();
-// npm install --save electron-simple-updater
+// updater.init();
+let win;
 
+
+// npm install --save electron-simple-updater
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 // Scheme must be registered before the app is ready
@@ -23,7 +47,7 @@ protocol.registerSchemesAsPrivileged([
 
 async function createWindow() {
   // Create the browser window.
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     zoomFactor: 0.45,
@@ -44,8 +68,111 @@ async function createWindow() {
     createProtocol("app");
     // Load the index.html when not in development
     win.loadURL("app://./index.html");
+    autoUpdater.checkForUpdatesAndNotify()
+    // Only in prod (built) - will skip if not bundled
   }
-  autoUpdater.checkForUpdatesAndNotify()
+  // autoUpdater.checkForUpdates()
+
+
+
+
+
+
+
+
+
+
+
+  //-------------------------------------------------------------------
+  // Auto updates
+  //-------------------------------------------------------------------
+  const sendStatusToWindow = (text) => {
+    // log.info(text);
+    if (win) {
+      win.webContents.send('message', text);
+      console.log('win')
+    } else {
+
+      console.log('blah')
+    }
+  };
+
+  function sendStatusToUI(text) {
+    console.log(dialog.showMessageBox(win, { message: text, type: "info"}))
+  }
+
+  sendStatusToWindow('test text')
+
+  autoUpdater.on('checking-for-update', () => {
+    sendStatusToWindow('Checking for update...');
+    // console.log(dialog.showMessageBox(win, { message: "Version .... is ready", type: "info", buttons: ["Update Now", "Update later", ]}))
+    sendStatusToUI('Checking for update...')
+  });
+  autoUpdater.on('update-available', info => {
+    sendStatusToWindow('Update available.');
+    sendStatusToUI('Update available.');
+    
+  });
+  autoUpdater.on('update-not-available', info => {
+    sendStatusToWindow('Update not available.');
+    sendStatusToUI('Update not available.');
+  });
+  autoUpdater.on('error', err => {
+    sendStatusToWindow(`Error in auto-updater: ${err.toString()}`);
+    sendStatusToUI(`Error in auto-updater: ${err.toString()}`);
+  });
+  autoUpdater.on('download-progress', progressObj => {
+    sendStatusToWindow(
+      `Download speed: ${progressObj.bytesPerSecond} - Downloaded ${progressObj.percent}% (${progressObj.transferred} + '/' + ${progressObj.total} + )`
+    );
+  });
+  autoUpdater.on('update-downloaded', info => {
+    sendStatusToWindow('Update downloaded; will install now');
+    sendStatusToUI('Update downloaded; will install now');
+  });
+
+  autoUpdater.on('update-downloaded', info => {
+    // Wait 5 seconds, then quit and install
+    // In your application, you don't need to wait 500 ms.
+    // You could call autoUpdater.quitAndInstall(); immediately
+    autoUpdater.quitAndInstall();
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 // Quit when all windows are closed.
@@ -76,6 +203,10 @@ app.on("ready", async () => {
     }
   }
   createWindow();
+
+
+
+  // console.log(dialog.showMessageBox(win, { message: "Version .... is ready", type: "info", buttons: ["Update Now", "Update later", ]}))
 });
 
 // Exit cleanly on request from parent process in development mode.
@@ -92,3 +223,10 @@ if (isDevelopment) {
     });
   }
 }
+
+
+
+
+
+
+

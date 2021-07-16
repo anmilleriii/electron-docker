@@ -1,6 +1,6 @@
 {
   "name": "view",
-  "version": "0.1.1",
+  "version": "0.1.9",
   "description": "abcd",
   "author": "me",
   "private": true,
@@ -29,6 +29,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "electron-log": "^4.3.5",
     "electron-simple-updater": "^2.0.10",
     "electron-updater": "^4.3.9",
     "http": "*",

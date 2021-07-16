@@ -17,6 +17,16 @@ module.exports = {
                     "target": "AppImage",
                     "category": "Utility"
                 },
+                "mac": {
+                    "target": [
+                        "dmg",
+                        "zip"
+                    ],
+                    "category": "public.app-category.developer-tools",
+                    "hardenedRuntime": true,
+                    // "entitlements": "dist_electron/entitlements.mac.plist",
+                    // "entitlementsInherit": "dist_electron/entitlements.mac.plist"
+                },
                 publish: ['github']
                 // export GH_TOKEN=TOKEN-GOES-HERE
                 // export GH_TOKEN=
