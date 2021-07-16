@@ -18,6 +18,8 @@ COPY . ./
 # Must rebuild Electron on MacOS (ARM only)
 RUN npm install && npm install electron
 
-ENTRYPOINT npm run electron:serve
+# ENTRYPOINT npm run electron:serve
+RUN export GH_TOKEN=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
+ENTRYPOINT npm run release
 # ENTRYPOINT npm run electron:build
 

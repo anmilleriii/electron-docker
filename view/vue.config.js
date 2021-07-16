@@ -16,7 +16,10 @@ module.exports = {
                 "linux": {
                     "target": "AppImage",
                     "category": "Utility"
-                }
+                },
+                publish: ['github']
+                // export GH_TOKEN=TOKEN-GOES-HERE
+                // npm run electron:build -- -p always
             }
         }
     },
