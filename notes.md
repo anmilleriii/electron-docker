@@ -25,3 +25,7 @@ Build & push initial image to ECR
 2. Github Actions push new image to ECR, and deploy new ECS build of image.
 
 3. 
+
+
+
+Once built can test on tablet everytime????
