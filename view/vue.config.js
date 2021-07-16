@@ -19,7 +19,9 @@ module.exports = {
                 },
                 publish: ['github']
                 // export GH_TOKEN=TOKEN-GOES-HERE
+                // export GH_TOKEN=
                 // npm run electron:build -- -p always
+    
             }
         }
     },

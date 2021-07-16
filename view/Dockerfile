@@ -19,7 +19,7 @@ COPY . ./
 RUN npm install && npm install electron
 
 # ENTRYPOINT npm run electron:serve
-RUN export GH_TOKEN=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
+RUN export GH_TOKEN=${VUE_APP_GH_TOKEN}
 ENTRYPOINT npm run release
 # ENTRYPOINT npm run electron:build
 

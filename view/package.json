@@ -1,9 +1,10 @@
 {
   "name": "view",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "abcd",
   "author": "me",
   "private": true,
+  "repository": "https://github.com/anmilleriii/electron-docker-starter.git",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -29,6 +30,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "electron-simple-updater": "^2.0.10",
+    "electron-updater": "^4.3.9",
     "http": "*",
     "json-server": "^0.16.3",
     "vue": "3.1.1"
