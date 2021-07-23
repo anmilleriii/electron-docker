@@ -23,3 +23,14 @@ To build container images, run the following with the appropriate command based 
 `cd view`
 
 `./docker/start.sh <flag>`
+
+##  Publish to Github
+
+1. Set `GH_TOKEN` in `.env`
+
+2. Update version number in `package.json` (`vX.Y.Z`)
+
+2. `source ./release.sh`
+
+##  Check for Updates
+

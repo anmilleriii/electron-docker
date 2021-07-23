@@ -1,6 +1,6 @@
 {
   "name": "view",
-  "version": "0.1.9",
+  "version": "0.1.24",
   "description": "abcd",
   "author": "me",
   "private": true,
@@ -10,22 +10,15 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "electron:build": "vue-cli-service electron:build",
+    "electron:build": "vue-cli-service electron:build --linux --x64",
     "electron:serve": "vue-cli-service electron:serve --no-sandbox",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
     "serve:production": "vue-cli-service serve --mode production",
-    "server": "json-server --watch db.json --port 5002 ",
+    "server": "json-server --watch db.json --port 5000 ",
     "release": "npm run electron:build -- -p always"
   },
   "main": "background.js",
-  "updater": {
-    "url": "https://github.com/anmilleriii/electron-docker-starter/tree/feature/add-auto-updates/updates.json",
-    "autoDownload": "true",
-    "checkUpdateOnStart": "true",
-    "disabled": "false",
-    "logger": "console"
-  },
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",

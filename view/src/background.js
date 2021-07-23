@@ -48,13 +48,61 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    zoomFactor: 0.45,
+    width: 1920,
+    height: 1080,
+
+    // 960x600
+
+    // 1024x600
+    useContentSize: true,
+    center: true,
+    frame: false,
+    resizable: false,
+
+    // width: 1024,
+    // height: 600,
+    // width:
+    // width: 1920,
+    // height: 1200,
+    // minHeight: 650,
+    // minWidth: 1070,
+    // u
+
+    // kiosk: true,
+
+    // zoomFactor: 0.45,
+    // useContentSize: true,
+    // width: 1920,
+    // height: 1200,
+    // minWidth: 1920,
+    // minHeight: 1200,
+    // resizable: false,
+    // fullscreen: true,
+    // enableLargerThanScreen: false,
+    // zoomToPageWidth: true,
+    // acceptFirstMouse: true
+    // disallow quitting/switching applications
+    // modal
+    // useContentSize: true,
+
+
+
+
+
+
+
+
+
+
+
+
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       // preload: __dirname + '/preload.js',
+
+
+
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
     },
@@ -63,7 +111,7 @@ async function createWindow() {
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
-    if (!process.env.IS_TEST) win.webContents.openDevTools();
+    if (!process.env.IS_TEST) console.log('asdf')// win.webContents.openDevTools();
   } else {
     createProtocol("app");
     // Load the index.html when not in development
